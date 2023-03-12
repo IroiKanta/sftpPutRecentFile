@@ -17,5 +17,5 @@ latest_zip=$(find . -name "$SEARCH_FILE" -type f -printf '%T+ %p\n' | sort | tai
 echo $latest_zip を送信します
 
 # sftp経由でzipファイルを送信
-sftp -i "$PRIVATE_KEY" -p $PORT "$HOST"
+sftp -i "$PRIVATE_KEY" -P $PORT $HOST << EOF
 put "$latest_zip" "$REMOTE_DIR"
