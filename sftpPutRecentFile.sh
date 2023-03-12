@@ -16,10 +16,6 @@ cd $DIRECTORY
 latest_zip=$(find . -name "$SEARCH_FILE" -type f -printf '%T+ %p\n' | sort | tail -n 1 | awk '{print $2}')
 echo $latest_zip を送信します
 
-if [ -n "$PROT" ]; then
-        PORT=22
-fi
-
 # sftp経由でzipファイルを送信
 sftp -i "$PRIVATE_KEY" -p $PORT "$HOST"
 put "$latest_zip" "$REMOTE_DIR"
